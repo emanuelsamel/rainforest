@@ -11,7 +11,7 @@ class ProductsController < ApplicationController
     if @product.save
       # default behaviour of flash works on a redirect
       flash[:notice] = 'Product successfully created!'
-      redirect_to root_url
+      redirect_to product_path(@product.id)
     else
       # flash.now works on the same request
       flash.now[:error] = 'Sorry, try again!'
@@ -29,7 +29,8 @@ class ProductsController < ApplicationController
   end#edit
 
   def show
-  end#show
+    @product = Product.find(params[:id])
+  end
 
   def update
   end#update
