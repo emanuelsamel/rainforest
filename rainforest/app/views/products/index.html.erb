@@ -4,7 +4,7 @@
 <% @products.each do |p| %>
 
   <div class="name">
-    <li> <%= p.name %></li>
+    <li> <%=link_to p.name, product_path(p.id) %></li>
   </div>
 
 
@@ -14,7 +14,7 @@
 
 
   <div class="name">
-    <li> <%= p.price_in_cents %></li>
+    <li> <%= p.price_in_dollars %></li>
   </div>
 
 

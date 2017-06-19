@@ -26,17 +26,31 @@ class ProductsController < ApplicationController
   end
 
   def edit
-  end#edit
+    @product = Product.find(params[:id])
+  end
 
   def show
     @product = Product.find(params[:id])
   end
 
   def update
+    @product = Product.find(params[:id])
+
+    if @product.update product_params
+      flash[:notice] = 'Product successfully updated'
+      redirect_to product_path(@product.id)
+    else
+      flash.now[:error] = 'Sorry try again'
+      render :edit
+    end
   end#update
 
   def destroy
-  end#destroy
+      @product = Product.find(params[:id])
+      @product.destroy
+      flash[:alert] = "Product deleted!"
+      redirect_to "/products"
+    end
 
   private
 
